@@ -10,7 +10,7 @@ import Foundation
 internal struct Symbol: Decodable {
     
     static var all: [String: Symbol] = {
-        return Bundle(identifier: "org.cocoapods.Ursus").flatMap { bundle in
+        return Bundle(identifier: "org.cocoapods.UrsusSigil").flatMap { bundle in
             return bundle.url(forResource: "index", withExtension: "json")
         }.flatMap { url in
             return try? Data(contentsOf: url)
