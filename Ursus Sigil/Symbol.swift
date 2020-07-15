@@ -10,13 +10,13 @@ import Foundation
 internal struct Symbol: Decodable {
     
     static var all: [String: Symbol] = {
-        return Bundle(identifier: "org.cocoapods.UrsusSigil").flatMap { bundle in
-            return bundle.url(forResource: "index", withExtension: "json")
-        }.flatMap { url in
-            return try? Data(contentsOf: url)
-        }.flatMap { data in
-            return try? JSONDecoder().decode([String: Symbol].self, from: data)
-        } ?? [:]
+        do {
+            let data = try Data(contentsOf: Bundle.ursusSigil.urlForSymbols())
+            let symbols = try JSONDecoder().decode([String: Symbol].self, from: data)
+            return symbols
+        } catch {
+            return [:]
+        }
     }()
     
     var name: String
