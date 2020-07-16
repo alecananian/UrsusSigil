@@ -27,6 +27,7 @@ I can probably help set up Carthage or Swift Package Manager support if you need
 Things that would make this codebase nicer:
 
 - [ ] Add SwiftUI `SigilView` component
+- [ ] macOS support
 
 ## Other utilities
 

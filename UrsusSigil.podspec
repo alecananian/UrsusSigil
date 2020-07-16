@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.swift_versions = ['5.1', '5.2']
   
   s.ios.deployment_target = '13.0'
-  s.osx.deployment_target = '10.15'
+  # s.osx.deployment_target = '10.15'
   
   s.source_files = 'Ursus Sigil/**/*.swift'
   s.resources = 'Ursus Sigil/Resources/**/*'
