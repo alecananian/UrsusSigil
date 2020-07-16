@@ -15,23 +15,20 @@ public protocol Element: Decodable {
     
 }
 
+private let defaultBounds = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
+
 extension Element {
     
-    func render(in context: CGContext, foregroundColor: UIColor, backgroundColor: UIColor) {
+    func render(into context: CGContext, bounds: CGRect, foregroundColor: UIColor, backgroundColor: UIColor) {
         context.saveGState()
         context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
         context.setLineWidth(attributes.strokeWidth)
         context.setLineCap(attributes.strokeLineCap)
         context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
-        context.addPath(path.cgPath)
+        context.addPath(path.applying(attributes.transform).applying(CGAffineTransform(from: defaultBounds, to: bounds)).cgPath)
 //        context.clip(using: attributes.clipRule)
         context.fillPath(using: attributes.fillRule)
         context.strokePath()
-        #warning("TODO: Set stroke width multiplier")
-        #warning("TODO: Scale image rendering")
-        #warning("TODO: Apply transform")
-        #warning("TODO: Apply transform")
-        #warning("TODO: Double check clip and fillPath calls")
         context.restoreGState()
     }
     

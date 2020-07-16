@@ -12,26 +12,34 @@ public struct Sigil {
     
     public var ship: PatP
     
-    public init(ship: PatP) {
+    public var foregroundColor: UIColor
+    
+    public var backgroundColor: UIColor
+    
+    public init(ship: PatP, foregroundColor: UIColor = .black, backgroundColor: UIColor = .white) {
         self.ship = ship
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
     }
     
 }
 
 extension Sigil {
     
-    public var symbols: [Symbol] {
-        return ship.syllables.map { syllable in
-            return syllable.symbol
+    internal var symbols: [Symbol] {
+        return ship.syllables.compactMap { syllable in
+            return Symbol.all[syllable.rawValue]
         }
     }
     
 }
 
-extension PhoneticBaseSyllable {
+extension Sigil {
     
-    public var symbol: Symbol {
-        return Symbol.all[self.rawValue]!
+    public func image(with size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { context in
+            symbols.first?.render(into: context.cgContext, bounds: CGRect(origin: .zero, size: size), foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        }
     }
     
 }
