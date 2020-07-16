@@ -24,8 +24,9 @@ public struct SigilView: UIViewRepresentable {
     }
     
     public func makeUIView(context: Context) -> UIView {
-        #warning("Set image view scaling mode")
+        #warning("Set image view scaling mode or remove SigilView")
         #warning("Move image generation off into the sigil struct")
+        #warning("Make a bunch of stuff internal rather than public")
         return UIImageView(
             image: UIGraphicsImageRenderer(size: CGSize(width: 128.0, height: 128.0)).image { context in
                 Sigil(ship: ship).symbols.first!.render(in: context.cgContext, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
