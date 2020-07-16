@@ -13,26 +13,28 @@ public struct SigilView: UIViewRepresentable {
     
     public var ship: PatP
     
-    public var backgroundColor: Color
+    public var foregroundColor: UIColor = .black
     
-    public var foregroundColor: Color
+    public var backgroundColor: UIColor = .white
     
-    public init(ship: PatP, backgroundColor: Color = Color(UIColor.systemBackground), foregroundColor: Color = Color(UIColor.systemFill)) {
+    public init(ship: PatP, foregroundColor: UIColor = .black, backgroundColor: UIColor = .white) {
         self.ship = ship
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
     }
     
     public func makeUIView(context: Context) -> UIView {
-        return UIView()
-//        return UIView(SVGData: Sigil(ship: ship).symbols.first!.svgData()) { layer in
-//            layer.boundingBox = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
-////            layer.resizeToFit(self.view.bounds)
-//        }
+        return UIImageView(
+            image: UIGraphicsImageRenderer(size: CGSize(width: 128.0, height: 128.0)).image { context in
+                Sigil(ship: ship).symbols.first!.render(in: context.cgContext, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+            }
+        )
     }
     
     public func updateUIView(_ uiView: UIView, context: Context) {
-        
+        (uiView as? UIImageView)?.image = UIGraphicsImageRenderer(size: CGSize(width: 128.0, height: 128.0)).image { context in
+            Sigil(ship: ship).symbols.first!.render(in: context.cgContext, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        }
     }
     
 }
