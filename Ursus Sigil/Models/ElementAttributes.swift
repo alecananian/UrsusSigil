@@ -91,9 +91,7 @@ internal struct ElementAttributes: Decodable {
         self.fill = try container.decodeIfPresent(Color.self, forKey: .fill) ?? .none
         self.fillRule = try container.decodeIfPresent(FillRule.self, forKey: .fillRule)?.fillRule ?? .winding
         self.clipRule = try container.decodeIfPresent(FillRule.self, forKey: .clipRule)?.fillRule ?? .winding
-//        self.transform = try container.decodeIfPresent(String.self, forKey: .transform)
-        #warning("TODO: Parse affine transform")
-        self.transform = .identity
+        self.transform = try container.decodeIfPresent(String.self, forKey: .transform).flatMap { CGAffineTransform(transformString: $0) } ?? .identity
     }
     
 }

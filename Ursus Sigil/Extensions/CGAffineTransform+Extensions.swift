@@ -9,10 +9,19 @@ import Foundation
 
 extension CGAffineTransform {
     
-    internal init(from source: CGRect, to destination: CGRect) {
+    internal init?(transformString string: String) {
+        #warning("TODO: Parse transform strings")
+        return nil
+    }
+    
+}
+
+extension CGAffineTransform {
+    
+    internal init?(from source: CGRect, to destination: CGRect) {
         guard source.width.isNormal, source.height.isNormal else {
             self = .identity
-            return
+            return nil
         }
         
         self = CGAffineTransform(

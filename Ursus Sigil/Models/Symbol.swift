@@ -57,7 +57,7 @@ extension Symbol {
             let symbols = try JSONDecoder().decode([String: Symbol].self, from: data)
             return symbols
         } catch let error {
-            print("Symbol decoding error:", error)
+            print("[UrsusSigil] Error decoding symbols:", error)
             return [:]
         }
     }()
