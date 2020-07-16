@@ -17,7 +17,7 @@ public protocol Element: Decodable {
 
 extension Element {
     
-    func render(in context: CGContext, foregroundColor: UIColor = .black, backgroundColor: UIColor = .white) {
+    func render(in context: CGContext, foregroundColor: UIColor, backgroundColor: UIColor) {
         context.saveGState()
         context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
         context.setLineWidth(attributes.strokeWidth)

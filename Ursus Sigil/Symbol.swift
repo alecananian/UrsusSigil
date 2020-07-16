@@ -63,3 +63,14 @@ extension Symbol {
     }()
     
 }
+
+extension Symbol {
+    
+    func render(in context: CGContext, foregroundColor: UIColor = .black, backgroundColor: UIColor = .white) {
+        element.render(in: context, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        for element in children {
+            element.render(in: context, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        }
+    }
+    
+}
