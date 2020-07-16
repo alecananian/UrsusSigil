@@ -24,7 +24,6 @@ extension Element {
             context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
             context.addPath(transformedPath.cgPath)
             context.fillPath(using: attributes.fillRule)
-//            context.clip(using: attributes.clipRule)
             
             context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
             context.setLineWidth(bounds.width / 128.0 + 0.33)
