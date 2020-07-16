@@ -18,16 +18,20 @@ internal protocol Element: Decodable {
 extension Element {
     
     func render(into context: CGContext, bounds: CGRect, foregroundColor: UIColor, backgroundColor: UIColor) {
-        context.saveGState()
-        context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
-        context.setLineWidth(attributes.strokeWidth)
-        context.setLineCap(attributes.strokeLineCap)
-        context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
-        context.addPath(path.applying(attributes.transform).applying(CGAffineTransform(from: Symbol.bounds, to: bounds)).cgPath)
-//        context.clip(using: attributes.clipRule)
-        context.fillPath(using: attributes.fillRule)
-        context.strokePath()
-        context.restoreGState()
+        let transformedPath = path.applying(attributes.transform).applying(CGAffineTransform(from: Symbol.bounds, to: bounds))
+        
+        context.draw { context in
+            context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
+            context.addPath(transformedPath.cgPath)
+            context.fillPath(using: attributes.fillRule)
+//            context.clip(using: attributes.clipRule)
+            
+            context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
+            context.setLineWidth(attributes.strokeWidth)
+            context.setLineCap(attributes.strokeLineCap)
+            context.addPath(transformedPath.cgPath)
+            context.strokePath()
+        }
     }
     
 }
