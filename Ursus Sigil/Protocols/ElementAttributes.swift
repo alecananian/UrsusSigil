@@ -15,6 +15,17 @@ public struct ElementAttributes: Decodable {
         case foreground = "@FG"
         case background = "@BG"
         
+        func color(foregroundColor: UIColor, backgroundColor: UIColor) -> UIColor {
+            switch self {
+            case .none:
+                return .clear
+            case .foreground:
+                return foregroundColor
+            case .background:
+                return backgroundColor
+            }
+        }
+        
     }
     
     private enum LineCap: String, Decodable {
@@ -58,7 +69,7 @@ public struct ElementAttributes: Decodable {
     var fill: Color
     var fillRule: CGPathFillRule
     var clipRule: CGPathFillRule
-    var transform: String?
+    var transform: CGAffineTransform
     
     public enum CodingKeys: String, CodingKey {
 
@@ -80,7 +91,9 @@ public struct ElementAttributes: Decodable {
         self.fill = try container.decodeIfPresent(Color.self, forKey: .fill) ?? .none
         self.fillRule = try container.decodeIfPresent(FillRule.self, forKey: .fillRule)?.fillRule ?? .winding
         self.clipRule = try container.decodeIfPresent(FillRule.self, forKey: .clipRule)?.fillRule ?? .winding
-        self.transform = try container.decodeIfPresent(String.self, forKey: .transform)
+//        self.transform = try container.decodeIfPresent(String.self, forKey: .transform)
+        #warning("TODO: Parse affine transform")
+        self.transform = .identity
     }
     
 }

@@ -17,24 +17,19 @@ public protocol Element: Decodable {
 
 extension Element {
     
-    func render(in context: CGContext) {
-
-//        var stroke: Color
-//        var strokeWidth: CGFloat
-//        var strokeLineCap: CGLineCap
-//        var fill: Color
-//        var fillRule: CGPathFillRule
-//        var clipRule: CGPathFillRule
-//        var transform: String?
-        
-//        context.saveGState()
-//        context.setStrokeColor(UIColor.clear.cgColor)
-//        context.setLineWidth(attributes.strokeWidth)
-//        context.setLineCap(attributes.strokeLineCap)
-//        context.setFillColor(UIColor.clear.cgColor)
-//        context.
-//
-//        context.restoreGState()
+    func render(in context: CGContext, foregroundColor: UIColor = .black, backgroundColor: UIColor = .white) {
+        context.saveGState()
+        context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
+        context.setLineWidth(attributes.strokeWidth)
+        context.setLineCap(attributes.strokeLineCap)
+        context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
+        context.addPath(path.cgPath)
+        context.clip(using: attributes.clipRule)
+        context.fillPath(using: attributes.fillRule)
+        context.strokePath()
+        #warning("TODO: Apply transform")
+        #warning("TODO: Double check clip and fillPath calls")
+        context.restoreGState()
     }
     
 }
