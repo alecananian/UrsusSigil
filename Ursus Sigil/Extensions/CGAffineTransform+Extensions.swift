@@ -18,10 +18,10 @@ extension CGAffineTransform {
 
 extension CGAffineTransform {
     
-    internal init?(from source: CGRect, to destination: CGRect) {
+    internal init(from source: CGRect, to destination: CGRect) {
         guard source.width.isNormal, source.height.isNormal else {
             self = .identity
-            return nil
+            return
         }
         
         self = CGAffineTransform(

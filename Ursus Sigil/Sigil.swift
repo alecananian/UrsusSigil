@@ -38,6 +38,9 @@ extension Sigil {
     
     public func image(with size: CGSize) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { context in
+            context.cgContext.setFillColor(backgroundColor.cgColor)
+            context.cgContext.fill(CGRect(origin: .zero, size: size))
+            
             symbols.first?.render(into: context.cgContext, bounds: CGRect(origin: .zero, size: size), foregroundColor: foregroundColor, backgroundColor: backgroundColor)
         }
     }
