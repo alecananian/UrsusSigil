@@ -9,9 +9,9 @@ import Foundation
 
 public struct LineElement: Element {
     
-    public var x1: String?
-    public var y1: String?
-    public var x2: String
-    public var y2: String
+    @OptionalDecodableFromString public var x1: Double?
+    @OptionalDecodableFromString public var y1: Double?
+    @DecodableFromString public var x2: Double
+    @DecodableFromString public var y2: Double
     
 }

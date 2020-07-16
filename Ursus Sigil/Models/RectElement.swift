@@ -9,7 +9,7 @@ import Foundation
 
 public struct RectElement: Element {
     
-    public var width: String
-    public var height: String
+    @DecodableFromString public var width: Double
+    @DecodableFromString public var height: Double
     
 }

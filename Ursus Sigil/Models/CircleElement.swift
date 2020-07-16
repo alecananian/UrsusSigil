@@ -9,30 +9,16 @@ import Foundation
 
 public struct CircleElement: Element {
     
-    //    public enum Attribute: String, CodingKey {
-    //
-    //        case clipRule = "clip-rule"
-    //        case cx
-    //        case cy
-    //        case d
-    //        case fill
-    //        case fillRule = "fill-rule"
-    //        case height
-    //        case r
-    //        case stroke
-    //        case strokeLinecap = "stroke-linecap"
-    //        case strokeWidth = "stroke-width"
-    //        case transform
-    //        case width
-    //        case x1
-    //        case x2
-    //        case y1
-    //        case y2
-    //
-    //    }
+    @DecodableFromString public var cx: Double
+    @DecodableFromString public var cy: Double
+    @DecodableFromString public var r: Double
     
-    public var cx: String
-    public var cy: String
-    public var r: String
+    public enum CodingKeys: String, CodingKey {
+
+        case cx
+        case cy
+        case r
+
+    }
     
 }
