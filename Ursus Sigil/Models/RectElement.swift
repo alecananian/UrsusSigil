@@ -7,10 +7,11 @@
 
 import Foundation
 
-public class RectElement: Element {
+public struct RectElement: Element {
     
     public var width: CGFloat
     public var height: CGFloat
+    public var attributes: ElementAttributes
     
     public enum CodingKeys: String, CodingKey {
 
@@ -19,11 +20,11 @@ public class RectElement: Element {
 
     }
     
-    public required init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.width = try container.decodeIfPresent(String.self, forKey: .width).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
         self.height = try container.decodeIfPresent(String.self, forKey: .height).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
-        try super.init(from: decoder)
+        self.attributes = try ElementAttributes(from: decoder)
     }
     
 }

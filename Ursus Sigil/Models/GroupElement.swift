@@ -7,6 +7,12 @@
 
 import Foundation
 
-public class GroupElement: Element {
+public struct GroupElement: Element {
+    
+    public var attributes: ElementAttributes
+    
+    public init(from decoder: Decoder) throws {
+        self.attributes = try ElementAttributes(from: decoder)
+    }
     
 }

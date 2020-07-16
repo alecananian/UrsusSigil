@@ -7,11 +7,12 @@
 
 import Foundation
 
-public class CircleElement: Element {
+public struct CircleElement: Element {
     
     public var cx: CGFloat
     public var cy: CGFloat
     public var r: CGFloat
+    public var attributes: ElementAttributes
     
     public enum CodingKeys: String, CodingKey {
 
@@ -21,12 +22,12 @@ public class CircleElement: Element {
 
     }
     
-    public required init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.cx = try container.decodeIfPresent(String.self, forKey: .cx).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
         self.cy = try container.decodeIfPresent(String.self, forKey: .cy).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
         self.r = try container.decodeIfPresent(String.self, forKey: .r).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
-        try super.init(from: decoder)
+        self.attributes = try ElementAttributes(from: decoder)
     }
     
 }
