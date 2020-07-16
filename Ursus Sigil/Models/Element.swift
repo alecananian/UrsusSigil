@@ -27,7 +27,7 @@ extension Element {
 //            context.clip(using: attributes.clipRule)
             
             context.setStrokeColor(attributes.stroke.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
-            context.setLineWidth(attributes.strokeWidth)
+            context.setLineWidth(bounds.width / 128.0 + 0.33)
             context.setLineCap(attributes.strokeLineCap)
             context.addPath(transformedPath.cgPath)
             context.strokePath()
