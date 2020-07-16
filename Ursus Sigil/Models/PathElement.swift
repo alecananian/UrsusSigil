@@ -7,8 +7,20 @@
 
 import Foundation
 
-public struct PathElement: Element {
+public class PathElement: Element {
     
     public var d: String
+    
+    public enum CodingKeys: String, CodingKey {
+
+        case d
+
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.d = try container.decodeIfPresent(String.self, forKey: .d) ?? ""
+        try super.init(from: decoder)
+    }
     
 }

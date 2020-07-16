@@ -7,13 +7,10 @@
 
 import Foundation
 
-public enum Symbol: Decodable {
+public struct Symbol: Decodable {
     
-    case rect(element: RectElement, children: [Symbol])
-    case circle(element: CircleElement, children: [Symbol])
-    case line(element: LineElement, children: [Symbol])
-    case path(element: PathElement, children: [Symbol])
-    case group(element: GroupElement, children: [Symbol])
+    var element: Element
+    var children: [Symbol]
     
     enum Name: String, Decodable {
         
@@ -37,31 +34,17 @@ public enum Symbol: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         switch (try container.decode(Name.self, forKey: .name)) {
         case .rect:
-            self = .rect(
-                element: try container.decode(RectElement.self, forKey: .attributes),
-                children: try container.decode([Symbol].self, forKey: .children)
-            )
+            self.element = try container.decode(RectElement.self, forKey: .attributes)
         case .circle:
-            self = .circle(
-                element: try container.decode(CircleElement.self, forKey: .attributes),
-                children: try container.decode([Symbol].self, forKey: .children)
-            )
+            self.element = try container.decode(CircleElement.self, forKey: .attributes)
         case .line:
-            self = .line(
-                element: try container.decode(LineElement.self, forKey: .attributes),
-                children: try container.decode([Symbol].self, forKey: .children)
-            )
+            self.element = try container.decode(LineElement.self, forKey: .attributes)
         case .path:
-            self = .path(
-                element: try container.decode(PathElement.self, forKey: .attributes),
-                children: try container.decode([Symbol].self, forKey: .children)
-            )
+            self.element = try container.decode(PathElement.self, forKey: .attributes)
         case .group:
-            self = .group(
-                element: try container.decode(GroupElement.self, forKey: .attributes),
-                children: try container.decode([Symbol].self, forKey: .children)
-            )
+            self.element = try container.decode(GroupElement.self, forKey: .attributes)
         }
+        self.children = try container.decode([Symbol].self, forKey: .children)
     }
     
 }

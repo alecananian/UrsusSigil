@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LineElement: Element {
+public class LineElement: Element {
     
     public var x1: CGFloat
     public var y1: CGFloat
@@ -23,12 +23,13 @@ public struct LineElement: Element {
 
     }
     
-    public init(decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.x1 = try CGFloat(container.decodeFromString(Double?.self, forKey: .x1) ?? 0.0)
-        self.y1 = try CGFloat(container.decodeFromString(Double?.self, forKey: .y1) ?? 0.0)
-        self.x2 = try CGFloat(container.decodeFromString(Double?.self, forKey: .x2) ?? 0.0)
-        self.y2 = try CGFloat(container.decodeFromString(Double?.self, forKey: .y2) ?? 0.0)
+        self.x1 = try container.decodeIfPresent(String.self, forKey: .x1).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.y1 = try container.decodeIfPresent(String.self, forKey: .y1).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.x2 = try container.decodeIfPresent(String.self, forKey: .x2).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.y2 = try container.decodeIfPresent(String.self, forKey: .y2).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        try super.init(from: decoder)
     }
     
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RectElement: Element {
+public class RectElement: Element {
     
     public var width: CGFloat
     public var height: CGFloat
@@ -19,10 +19,11 @@ public struct RectElement: Element {
 
     }
     
-    public init(decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.width = try CGFloat(container.decodeFromString(Double?.self, forKey: .width) ?? 0.0)
-        self.height = try CGFloat(container.decodeFromString(Double?.self, forKey: .height) ?? 0.0)
+        self.width = try container.decodeIfPresent(String.self, forKey: .width).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.height = try container.decodeIfPresent(String.self, forKey: .height).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        try super.init(from: decoder)
     }
     
 }

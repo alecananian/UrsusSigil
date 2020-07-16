@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CircleElement: Element {
+public class CircleElement: Element {
     
     public var cx: CGFloat
     public var cy: CGFloat
@@ -21,11 +21,12 @@ public struct CircleElement: Element {
 
     }
     
-    public init(decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cx = try CGFloat(container.decodeFromString(Double?.self, forKey: .cx) ?? 0.0)
-        self.cy = try CGFloat(container.decodeFromString(Double?.self, forKey: .cy) ?? 0.0)
-        self.r = try CGFloat(container.decodeFromString(Double?.self, forKey: .r) ?? 0.0)
+        self.cx = try container.decodeIfPresent(String.self, forKey: .cx).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.cy = try container.decodeIfPresent(String.self, forKey: .cy).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        self.r = try container.decodeIfPresent(String.self, forKey: .r).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0
+        try super.init(from: decoder)
     }
     
 }

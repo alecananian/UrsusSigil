@@ -7,6 +7,6 @@
 
 import Foundation
 
-public struct GroupElement: Element {
+public class GroupElement: Element {
     
 }
