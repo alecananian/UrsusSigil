@@ -25,10 +25,11 @@ public struct SigilView: UIViewRepresentable {
     }
     
     public func makeUIView(context: Context) -> UIView {
-        return UIView(SVGData: Sigil(ship: ship).symbols.first!.svgData()) { layer in
-            layer.boundingBox = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
-//            layer.resizeToFit(self.view.bounds)
-        }
+        return UIView()
+//        return UIView(SVGData: Sigil(ship: ship).symbols.first!.svgData()) { layer in
+//            layer.boundingBox = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
+////            layer.resizeToFit(self.view.bounds)
+//        }
     }
     
     public func updateUIView(_ uiView: UIView, context: Context) {
