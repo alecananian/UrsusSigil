@@ -37,12 +37,32 @@ extension Sigil {
 extension Sigil {
     
     public func image(with size: CGSize) -> UIImage {
+        let symbols = self.symbols
+        
         return UIGraphicsImageRenderer(size: size).image { context in
             context.cgContext.setFillColor(backgroundColor.cgColor)
-            context.cgContext.fill(CGRect(origin: .zero, size: size))
+            context.cgContext.fill(CGRect.init(x: 0.0, y: 0.0, width: size.width, height: size.height))
             
-            symbols.first?.render(into: context.cgContext, bounds: CGRect(origin: .zero, size: size), foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+            for (index, origin) in symbolOrigins[symbols.count, default: []].enumerated() {
+                symbols[index].render(into: context.cgContext, bounds: CGRect(x: size.width * origin.x, y: size.height * origin.y, width: size.width * 0.5, height: size.height * 0.5), foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+            }
         }
     }
     
 }
+
+private let symbolOrigins: [Int: [CGPoint]] = [
+    1: [
+        CGPoint(x: 0.25, y: 0.25)
+    ],
+    2: [
+        CGPoint(x: 0.0, y: 0.25),
+        CGPoint(x: 0.5, y: 0.25)
+    ],
+    4: [
+        CGPoint(x: 0.0, y: 0.0),
+        CGPoint(x: 0.5, y: 0.0),
+        CGPoint(x: 0.0, y: 0.5),
+        CGPoint(x: 0.5, y: 0.5)
+    ]
+]
