@@ -14,13 +14,22 @@ pod 'UrsusSigil', '~> 0.1'
 
 I can probably help set up Carthage or Swift Package Manager support if you need it.
 
-- https://github.com/urbit/sigil-js
-
 ## Todo list
 
 Things that would make this codebase nicer:
 
 - [ ] Finish this...
+
+## Other utilities
+
+- [sigil-js](https://github.com/urbit/sigil-js)
+- [sigil-figma-plugin](https://github.com/urbit/sigil-figma-plugin)
+
+## References
+
+- [Creating Sigils](https://urbit.org/blog/creating-sigils/)
+- [Sigil Generator](http://sigil.azimuth.network)
+- [urbit.live/explore](https://urbit.live/explore) 
 
 ## Dependencies
 
