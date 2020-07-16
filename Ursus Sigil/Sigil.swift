@@ -27,8 +27,6 @@ public struct Sigil {
 extension Sigil {
     
     internal var symbols: [Symbol] {
-        print("ARGH", ship, ship.syllables.map(\.rawValue))
-        
         return ship.syllables.compactMap { syllable in
             return Symbol.all[syllable.rawValue]
         }
