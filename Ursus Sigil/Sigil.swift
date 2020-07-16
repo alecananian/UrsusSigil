@@ -20,7 +20,7 @@ public struct Sigil {
 
 extension Sigil {
     
-    var symbols: [Symbol] {
+    public var symbols: [Symbol] {
         return ship.syllables.map { syllable in
             return syllable.symbol
         }
@@ -30,7 +30,7 @@ extension Sigil {
 
 extension PhoneticBaseSyllable {
     
-    var symbol: Symbol {
+    public var symbol: Symbol {
         return Symbol.all[self.rawValue]!
     }
     
