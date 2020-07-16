@@ -2,7 +2,15 @@
 
 A library for generating Urbit sigils.
 
-> Note: This library is a work in progress.
+## Usage
+
+Generating sigil images is a one-liner in `UrsusSigil`:
+
+```swift
+let sigilImage = Sigil(ship: "~lanrus-rinfep").image(with: CGSize(width: 24.0, height: 24.0))
+```
+
+There are also optional `foregroundColor` and `backgroundColor` properties which may be specified.
 
 ## Installation
 
