@@ -15,7 +15,7 @@ internal protocol Element: Decodable {
     
 }
 
-private let defaultBounds = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
+private let symbolBounds = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
 
 extension Element {
     
@@ -25,7 +25,7 @@ extension Element {
         context.setLineWidth(attributes.strokeWidth)
         context.setLineCap(attributes.strokeLineCap)
         context.setFillColor(attributes.fill.color(foregroundColor: foregroundColor, backgroundColor: backgroundColor).cgColor)
-        context.addPath(path.applying(attributes.transform).applying(CGAffineTransform(from: defaultBounds, to: bounds)).cgPath)
+        context.addPath(path.applying(attributes.transform).applying(CGAffineTransform(from: symbolBounds, to: bounds)).cgPath)
 //        context.clip(using: attributes.clipRule)
         context.fillPath(using: attributes.fillRule)
         context.strokePath()
