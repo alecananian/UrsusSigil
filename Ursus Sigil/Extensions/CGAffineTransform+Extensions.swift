@@ -28,9 +28,9 @@ extension CGAffineTransform {
             a: destination.width / source.width,
             b: 0.0,
             c: 0.0,
-            d: destination.height / -source.height,
+            d: destination.height / source.height,
             tx: (destination.minX * source.width - source.minX * destination.width) / source.width,
-            ty: (destination.minY * -source.height - source.maxY * destination.height) / -source.height
+            ty: (destination.minY * source.height - source.minY * destination.height) / source.height
         )
     }
     
