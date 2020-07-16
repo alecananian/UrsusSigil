@@ -9,4 +9,6 @@ import Foundation
 
 public struct PathElement: Element {
     
+    public var d: String
+    
 }
