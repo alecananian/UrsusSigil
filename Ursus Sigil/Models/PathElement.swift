@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftSVG
 
 public struct PathElement: Element {
     
-    public var d: String
+    public var path: UIBezierPath
     public var attributes: ElementAttributes
     
     public enum CodingKeys: String, CodingKey {
@@ -20,7 +21,8 @@ public struct PathElement: Element {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.d = try container.decodeIfPresent(String.self, forKey: .d) ?? ""
+        let d = try container.decodeIfPresent(String.self, forKey: .d) ?? ""
+        self.path = UIBezierPath(pathString: d)
         self.attributes = try ElementAttributes(from: decoder)
     }
     

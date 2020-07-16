@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import SwiftSVG
 import UrsusAtom
 
 public struct SigilView: UIViewRepresentable {
