@@ -51,6 +51,8 @@ internal struct Symbol: Decodable {
 
 extension Symbol {
     
+    static let bounds = CGRect(x: 0.0, y: 0.0, width: 128.0, height: 128.0)
+    
     static var all: [String: Symbol] = {
         do {
             let data = try Data(contentsOf: Bundle.ursusSigil.urlForSymbols())
