@@ -19,7 +19,7 @@ public struct Symbol: Decodable {
     
     }
     
-    public enum Attribute: String, CodingKey, CaseIterable, Decodable {
+    public enum Attribute: String, CodingKey {
         
         case clipRule = "clip-rule"
         case cx
