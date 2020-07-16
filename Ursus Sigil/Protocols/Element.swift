@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Element: Decodable {
+internal protocol Element: Decodable {
     
     var path: UIBezierPath { get }
 

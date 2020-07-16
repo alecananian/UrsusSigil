@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Symbol: Decodable {
+internal struct Symbol: Decodable {
     
     var element: Element
     var children: [Symbol]
@@ -30,7 +30,7 @@ public struct Symbol: Decodable {
         
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         switch (try container.decode(Name.self, forKey: .name)) {
         case .rect:
@@ -51,7 +51,7 @@ public struct Symbol: Decodable {
 
 extension Symbol {
     
-    public static var all: [String: Symbol] = {
+    static var all: [String: Symbol] = {
         do {
             let data = try Data(contentsOf: Bundle.ursusSigil.urlForSymbols())
             let symbols = try JSONDecoder().decode([String: Symbol].self, from: data)

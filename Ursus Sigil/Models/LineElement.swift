@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct LineElement: Element {
+internal struct LineElement: Element {
     
-    public var path: UIBezierPath
-    public var attributes: ElementAttributes
+    var path: UIBezierPath
+    var attributes: ElementAttributes
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
         case x1
         case y1
@@ -21,7 +21,7 @@ public struct LineElement: Element {
 
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let x1 = try container.decodeIfPresent(String.self, forKey: .x1).flatMap { Double($0) } ?? 0.0
         let y1 = try container.decodeIfPresent(String.self, forKey: .y1).flatMap { Double($0) } ?? 0.0

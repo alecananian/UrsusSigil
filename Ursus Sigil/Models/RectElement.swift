@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct RectElement: Element {
+internal struct RectElement: Element {
     
-    public var path: UIBezierPath
-    public var attributes: ElementAttributes
+    var path: UIBezierPath
+    var attributes: ElementAttributes
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
         case x
         case y
@@ -21,7 +21,7 @@ public struct RectElement: Element {
 
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let x = try container.decodeIfPresent(String.self, forKey: .x).flatMap { Double($0) } ?? 0.0
         let y = try container.decodeIfPresent(String.self, forKey: .y).flatMap { Double($0) } ?? 0.0

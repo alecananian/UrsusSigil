@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct CircleElement: Element {
+internal struct CircleElement: Element {
     
-    public var path: UIBezierPath
-    public var attributes: ElementAttributes
+    var path: UIBezierPath
+    var attributes: ElementAttributes
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
         case cx
         case cy
@@ -20,7 +20,7 @@ public struct CircleElement: Element {
 
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let cx = try container.decodeIfPresent(String.self, forKey: .cx).flatMap { Double($0) } ?? 0.0
         let cy = try container.decodeIfPresent(String.self, forKey: .cy).flatMap { Double($0) } ?? 0.0

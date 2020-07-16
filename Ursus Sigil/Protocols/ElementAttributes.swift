@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct ElementAttributes: Decodable {
+internal struct ElementAttributes: Decodable {
     
-    public enum Color: String, Decodable {
+    internal enum Color: String, Decodable {
         
         case none
         case foreground = "@FG"
@@ -71,7 +71,7 @@ public struct ElementAttributes: Decodable {
     var clipRule: CGPathFillRule
     var transform: CGAffineTransform
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
         case stroke
         case strokeWidth = "stroke-width"
@@ -83,7 +83,7 @@ public struct ElementAttributes: Decodable {
 
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.stroke = try container.decodeIfPresent(Color.self, forKey: .stroke) ?? .none
         self.strokeWidth = try container.decodeIfPresent(String.self, forKey: .strokeWidth).flatMap { Double($0) }.flatMap { CGFloat($0) } ?? 0.0

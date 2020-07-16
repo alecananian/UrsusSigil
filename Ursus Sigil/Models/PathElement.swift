@@ -8,18 +8,18 @@
 import Foundation
 import SwiftSVG
 
-public struct PathElement: Element {
+internal struct PathElement: Element {
     
-    public var path: UIBezierPath
-    public var attributes: ElementAttributes
+    var path: UIBezierPath
+    var attributes: ElementAttributes
     
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
         case d
 
     }
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let d = try container.decodeIfPresent(String.self, forKey: .d) ?? ""
         self.path = UIBezierPath(pathString: d)
