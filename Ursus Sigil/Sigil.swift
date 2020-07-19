@@ -33,19 +33,19 @@ extension Sigil {
 
 extension Sigil {
     
-    private static let origins: [Int: [CGPoint]] = [
+    private static let grids: [Int: [CGRect]] = [
         1: [
-            CGPoint(x: 0.25, y: 0.25)
+            CGRect(x: 0.25, y: 0.25, width: 0.5, height: 0.5)
         ],
         2: [
-            CGPoint(x: 0.0, y: 0.25),
-            CGPoint(x: 0.5, y: 0.25)
+            CGRect(x: 0.0, y: 0.25, width: 0.5, height: 0.5),
+            CGRect(x: 0.5, y: 0.25, width: 0.5, height: 0.5)
         ],
         4: [
-            CGPoint(x: 0.0, y: 0.0),
-            CGPoint(x: 0.5, y: 0.0),
-            CGPoint(x: 0.0, y: 0.5),
-            CGPoint(x: 0.5, y: 0.5)
+            CGRect(x: 0.0, y: 0.0, width: 0.5, height: 0.5),
+            CGRect(x: 0.5, y: 0.0, width: 0.5, height: 0.5),
+            CGRect(x: 0.0, y: 0.5, width: 0.5, height: 0.5),
+            CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5)
         ]
     ]
     
@@ -53,8 +53,9 @@ extension Sigil {
         let symbols = self.symbols
         
         return UIGraphicsImageRenderer(size: size).image { context in
-            for (index, origin) in Sigil.origins[symbols.count, default: []].enumerated() {
-                symbols[index].render(into: context.cgContext, bounds: CGRect(x: size.width * origin.x, y: size.height * origin.y, width: size.width * 0.5, height: size.height * 0.5), color: color)
+            for (index, cell) in Sigil.grids[symbols.count, default: []].enumerated() {
+                let bounds = CGRect(x: size.width * cell.minX, y: size.height * cell.minY, width: size.width * cell.width, height: size.height * cell.height)
+                symbols[index].render(into: context.cgContext, bounds: bounds, color: color)
             }
         }
     }
