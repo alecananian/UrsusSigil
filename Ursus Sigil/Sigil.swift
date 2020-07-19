@@ -23,32 +23,6 @@ public struct Sigil {
 
 extension Sigil {
     
-    internal var symbols: [Symbol] {
-        return ship.syllables.compactMap { syllable in
-            return Symbol.all[syllable.rawValue]
-        }
-    }
-    
-}
-
-extension Sigil {
-    
-    private static let grids: [Int: [CGRect]] = [
-        1: [
-            CGRect(x: 0.25, y: 0.25, width: 0.5, height: 0.5)
-        ],
-        2: [
-            CGRect(x: 0.0, y: 0.25, width: 0.5, height: 0.5),
-            CGRect(x: 0.5, y: 0.25, width: 0.5, height: 0.5)
-        ],
-        4: [
-            CGRect(x: 0.0, y: 0.0, width: 0.5, height: 0.5),
-            CGRect(x: 0.5, y: 0.0, width: 0.5, height: 0.5),
-            CGRect(x: 0.0, y: 0.5, width: 0.5, height: 0.5),
-            CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5)
-        ]
-    ]
-    
     public func image(with size: CGSize) -> UIImage {
         let symbols = self.symbols
         
@@ -59,5 +33,31 @@ extension Sigil {
             }
         }
     }
+    
+}
+
+extension Sigil {
+    
+    private var symbols: [Symbol] {
+        return ship.syllables.compactMap { syllable in
+            return Symbol.all[syllable.rawValue]
+        }
+    }
+    
+    private static let grids: [Int: [CGRect]] = [
+        1: [
+            CGRect(x: 0.25, y: 0.25, width: 0.50, height: 0.50)
+        ],
+        2: [
+            CGRect(x: 0.00, y: 0.25, width: 0.50, height: 0.50),
+            CGRect(x: 0.50, y: 0.25, width: 0.50, height: 0.50)
+        ],
+        4: [
+            CGRect(x: 0.00, y: 0.00, width: 0.50, height: 0.50),
+            CGRect(x: 0.50, y: 0.00, width: 0.50, height: 0.50),
+            CGRect(x: 0.00, y: 0.50, width: 0.50, height: 0.50),
+            CGRect(x: 0.50, y: 0.50, width: 0.50, height: 0.50)
+        ]
+    ]
     
 }
