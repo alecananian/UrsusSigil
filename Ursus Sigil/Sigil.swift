@@ -57,6 +57,34 @@ extension Sigil {
             CGRect(x: 0.50, y: 0.00, width: 0.50, height: 0.50),
             CGRect(x: 0.00, y: 0.50, width: 0.50, height: 0.50),
             CGRect(x: 0.50, y: 0.50, width: 0.50, height: 0.50)
+        ],
+        8: [
+            CGRect(x: 0.00, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.00, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.50, width: 0.25, height: 0.25),
+        ],
+        16: [
+            CGRect(x: 0.00, y: 0.00, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.00, width: 0.25, height: 0.25),
+            CGRect(x: 0.00, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.00, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.00, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.25, width: 0.25, height: 0.25),
+            CGRect(x: 0.00, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.00, y: 0.75, width: 0.25, height: 0.25),
+            CGRect(x: 0.25, y: 0.75, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.50, width: 0.25, height: 0.25),
+            CGRect(x: 0.50, y: 0.75, width: 0.25, height: 0.25),
+            CGRect(x: 0.75, y: 0.75, width: 0.25, height: 0.25)
         ]
     ]
     
