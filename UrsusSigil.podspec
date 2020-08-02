@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.resources = 'Ursus Sigil/Resources/**/*'
   
   s.dependency 'SwiftSVG', '~> 2.0'
-  s.dependency 'UrsusAtom', '~> 1.0'
+  s.dependency 'UrsusAtom', '~> 1.2'
 end

@@ -9,12 +9,14 @@ import Foundation
 import UrsusAtom
 
 public struct Sigil {
+
+    public typealias Ship = PatP
     
-    public var ship: PatP
+    public var ship: Ship
     
     public var color: UIColor
     
-    public init(ship: PatP, color: UIColor = .black) {
+    public init(ship: Ship, color: UIColor = .black) {
         self.ship = ship
         self.color = color
     }
@@ -24,8 +26,6 @@ public struct Sigil {
 extension Sigil {
     
     public func image(with size: CGSize) -> UIImage {
-        let symbols = self.symbols
-        
         return UIGraphicsImageRenderer(size: size).image { context in
             for (index, cell) in Sigil.grids[symbols.count, default: []].enumerated() {
                 let bounds = CGRect(x: size.width * cell.minX, y: size.height * cell.minY, width: size.width * cell.width, height: size.height * cell.height)
