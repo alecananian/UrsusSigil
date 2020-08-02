@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name = "UrsusSigil"
-  s.version = "1.2.0"
+  s.version = "1.2.1"
   s.summary = "A library for generating Urbit sigils."
   s.homepage = "https://github.com/dclelland/UrsusSigil"
   s.license = { type: 'MIT' }
   s.author = { "Daniel Clelland" => "daniel.clelland@gmail.com" }
-  s.source = { git: "https://github.com/dclelland/UrsusSigil.git", tag: "1.2.0" }
+  s.source = { git: "https://github.com/dclelland/UrsusSigil.git", tag: "1.2.1" }
   s.swift_versions = ['5.1', '5.2']
   
   s.ios.deployment_target = '13.0'
