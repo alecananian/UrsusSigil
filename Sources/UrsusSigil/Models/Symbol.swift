@@ -5,7 +5,7 @@
 //  Created by Daniel Clelland on 14/07/20.
 //
 
-import Foundation
+import UIKit
 
 internal struct Symbol: Decodable {
     
@@ -55,7 +55,7 @@ extension Symbol {
     
     static var all: [String: Symbol] = {
         do {
-            let data = try Data(contentsOf: Bundle.ursusSigil.urlForSymbols())
+            let data = try Data(contentsOf: Bundle.module.urlForSymbols())
             let symbols = try JSONDecoder().decode([String: Symbol].self, from: data)
             return symbols
         } catch let error {

@@ -2,32 +2,31 @@
 
 A library for generating Urbit sigils.
 
+Based on [@dclelland's UrsusSigil CocoaPod](https://github.com/dclelland/UrsusSigil).
+
 ## Usage
 
 Generating sigil images is a one-liner in `UrsusSigil`:
 
 ```swift
-let sigilImage = Sigil(ship: "~lanrus-rinfep", color: .black).image(with: CGSize(width: 24.0, height: 24.0))
+let sigilImage = Sigil(ship: "~lanrus-rinfep", color: .black).image(with: CGSize(width: 24, height: 24))
+```
+
+Use the optional `icon` parameter to generate a simplified sigil:
+
+```swift
+let sigilImage = Sigil(ship: "~lanrus-rinfep", color: .black).image(with: CGSize(width: 24, height: 24), icon: true)
 ```
 
 Sigils render with a transparent background.
 
 ## Installation
 
-Ursus Sigil can be installed using Cocoapods by adding the following line to your podfile:
+Ursus Sigil can be installed using Swift Package Manager by adding this repository's URL to your project's packages:
 
-```ruby
-pod 'UrsusSigil', '~> 1.2'
 ```
-
-I can probably help set up Carthage or Swift Package Manager support if you need it.
-
-## Todo list
-
-Things that would make this codebase nicer:
-
-- [ ] Add SwiftUI `SigilView` component
-- [ ] macOS support
+https://github.com/alecananian/UrsusSigil
+```
 
 ## Other utilities
 
@@ -43,4 +42,4 @@ Things that would make this codebase nicer:
 ## Dependencies
 
 - [SwiftSVG](https://github.com/mchoe/SwiftSVG)
-- [UrsusAtom](https://github.com/dclelland/UrsusAtom)
+- [UrsusAtom](https://github.com/alecananian/UrsusAtom)
