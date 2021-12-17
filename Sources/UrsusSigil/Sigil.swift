@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import UrsusAtom
 
 public struct Sigil {
@@ -33,8 +34,8 @@ extension Sigil.Ship {
 
 extension Sigil {
     
-    public func image(with size: CGSize, titles: Set<Ship.Title> = Ship.sigilTitles) -> UIImage {
-        let symbols = self.symbols
+    public func image(with size: CGSize, titles: Set<Ship.Title> = Ship.sigilTitles, icon: Bool = false) -> UIImage {
+        let symbols = icon ? self.iconSymbols : self.symbols
         
         return UIGraphicsImageRenderer(size: size).image { context in
             guard titles.contains(ship.title) else {
@@ -55,6 +56,14 @@ extension Sigil {
     private var symbols: [Symbol] {
         return ship.syllables.compactMap { syllable in
             return Symbol.all[syllable.rawValue]
+        }
+    }
+    
+    private var iconSymbols: [Symbol] {
+        return symbols.compactMap { symbol -> Symbol in
+            var mutableSymbol = symbol
+            mutableSymbol.children = mutableSymbol.children.filter { $0.element.attributes.dataisgeon }
+            return mutableSymbol
         }
     }
     

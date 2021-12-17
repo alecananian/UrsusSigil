@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 internal struct ElementAttributes: Decodable {
     
@@ -59,6 +60,7 @@ internal struct ElementAttributes: Decodable {
     var fillRule: CGPathFillRule
     var clipRule: CGPathFillRule
     var transform: CGAffineTransform
+    var dataisgeon: Bool
     
     enum CodingKeys: String, CodingKey {
 
@@ -69,6 +71,7 @@ internal struct ElementAttributes: Decodable {
         case fillRule = "fill-rule"
         case clipRule = "clip-rule"
         case transform
+        case dataisgeon
 
     }
     
@@ -81,6 +84,7 @@ internal struct ElementAttributes: Decodable {
         self.fillRule = try container.decodeIfPresent(FillRule.self, forKey: .fillRule)?.fillRule ?? .winding
         self.clipRule = try container.decodeIfPresent(FillRule.self, forKey: .clipRule)?.fillRule ?? .winding
         self.transform = try container.decodeIfPresent(String.self, forKey: .transform).flatMap { CGAffineTransform(transformString: $0) } ?? .identity
+        self.dataisgeon = try container.decodeIfPresent(String.self, forKey: .dataisgeon) == "true"
     }
     
 }
